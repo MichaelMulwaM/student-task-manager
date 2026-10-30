@@ -14,4 +14,9 @@ addButton.addEventListener("click", function() {
     taskList.appendChild(newTask);
 
     taskInput.value = "";
+
+    if (taskName === "") {
+        alert("Please enter a task!");
+        return;
+    }
 });

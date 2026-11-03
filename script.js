@@ -71,3 +71,11 @@ function displayTask() {
             saveTasks();
             displayTask();
         });
+
+        const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", function() {
+            tasks.splice(index, 1); // Remove from array
+            saveTasks();
+            displayTask();          // Redraw screen
+        });

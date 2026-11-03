@@ -75,7 +75,14 @@ function displayTask() {
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", function() {
-            tasks.splice(index, 1); // Remove from array
+            tasks.splice(index, 1);
             saveTasks();
-            displayTask();          // Redraw screen
+            displayTask();
         });
+
+         newTask.appendChild(taskText);
+        newTask.appendChild(completeButton);
+        newTask.appendChild(deleteButton);
+        taskList.appendChild(newTask);
+    });
+}

@@ -15,6 +15,9 @@ const addButton =
     document.getElementById("add-task");
 const taskList = document.getElementById("task-list");
 
+let tasks = [];
+let currentFilter = sessionStorage.getItem("currentFilter") || "all";
+
 addButton.addEventListener("click", function () {
     
     const taskName = taskInput.value;

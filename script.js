@@ -51,3 +51,6 @@ addButton.addEventListener("click", function () {
 
     taskInput.value = "";
 });
+
+function displayTask() {
+    taskList.innerHTML = "";

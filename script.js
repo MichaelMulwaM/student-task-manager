@@ -14,6 +14,9 @@ const taskInput =
 const addButton =
     document.getElementById("add-task");
 const taskList = document.getElementById("task-list");
+const allFilter = document.getElementById("all-filter");
+const pendingFilter = document.getElementById("pending-filter");
+const completedFilter = document.getElementById("completed-filter");
 
 let tasks = [];
 let currentFilter = sessionStorage.getItem("currentFilter") || "all";
@@ -55,15 +58,30 @@ addButton.addEventListener("click", function () {
 function displayTask() {
     taskList.innerHTML = "";
 
-    tasks.forEach(function(task, index) {
+    let filteredTasks = tasks;
+
+    if (currentFilter === "pending") {
+        filteredTasks = tasks.filter(function(task) {
+            return task.completed === false;
+        });
+    }
+
+    if (currentFilter === "completed") {
+        filteredTasks = tasks.filter(function(task) {
+            return task.completed === true;
+        });
+    }
+
+    filteredTasks.forEach(function(task) {
         const newTask = document.createElement("li");
 
         const taskText = document.createElement("span");
         taskText.textContent = task.name;
 
-         if (task.completed) {
+        if (task.completed) {
             taskText.style.textDecoration = "line-through";
         }
+
         const completeButton = document.createElement("button");
         completeButton.textContent = task.completed ? "Undo" : "Complete";
         completeButton.addEventListener("click", function() {
@@ -75,14 +93,19 @@ function displayTask() {
         const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", function() {
-            tasks.splice(index, 1);
+            // Find the true index in the main tasks array so deletion works correctly during filters
+            const originalIndex = tasks.indexOf(task);
+            tasks.splice(originalIndex, 1);
             saveTasks();
             displayTask();
         });
 
-         newTask.appendChild(taskText);
+        newTask.appendChild(taskText);
         newTask.appendChild(completeButton);
         newTask.appendChild(deleteButton);
         taskList.appendChild(newTask);
     });
 }
+
+loadTasks();
+displayTask();

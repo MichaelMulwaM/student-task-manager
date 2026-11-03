@@ -107,5 +107,23 @@ function displayTask() {
     });
 }
 
+allFilter.addEventListener("click", function() {
+    currentFilter = "all";
+    sessionStorage.setItem("currentFilter", currentFilter);
+    displayTask();
+});
+
+pendingFilter.addEventListener("click", function() {
+    currentFilter = "pending";
+    sessionStorage.setItem("currentFilter", currentFilter);
+    displayTask();
+});
+
+completedFilter.addEventListener("click", function() {
+    currentFilter = "completed";
+    sessionStorage.setItem("currentFilter", currentFilter);
+    displayTask();
+});
+
 loadTasks();
 displayTask();

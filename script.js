@@ -18,6 +18,22 @@ const taskList = document.getElementById("task-list");
 let tasks = [];
 let currentFilter = sessionStorage.getItem("currentFilter") || "all";
 
+// Save 2 LocalStorage
+function saveTasks() {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+
+// Load 4rm LocalStorage
+function loadTasks() {
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+        const savedData = JSON.parse(savedTasks);
+        tasks = savedData.map(function(task) {
+            return new Task(task.name, task.completed);
+        });
+    }
+}
+
 addButton.addEventListener("click", function () {
     
     const taskName = taskInput.value;

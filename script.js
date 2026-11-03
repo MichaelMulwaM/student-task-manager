@@ -54,3 +54,9 @@ addButton.addEventListener("click", function () {
 
 function displayTask() {
     taskList.innerHTML = "";
+
+    tasks.forEach(function(task, index) {
+        const newTask = document.createElement("li");
+
+        const taskText = document.createElement("span");
+        taskText.textContent = task.name;

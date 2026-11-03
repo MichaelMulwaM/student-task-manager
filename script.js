@@ -64,3 +64,10 @@ function displayTask() {
          if (task.completed) {
             taskText.style.textDecoration = "line-through";
         }
+        const completeButton = document.createElement("button");
+        completeButton.textContent = task.completed ? "Undo" : "Complete";
+        completeButton.addEventListener("click", function() {
+            task.toggleComplete();
+            saveTasks();
+            displayTask();
+        });

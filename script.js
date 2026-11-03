@@ -60,3 +60,7 @@ function displayTask() {
 
         const taskText = document.createElement("span");
         taskText.textContent = task.name;
+
+         if (task.completed) {
+            taskText.style.textDecoration = "line-through";
+        }
